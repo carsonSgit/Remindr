@@ -18,23 +18,27 @@ namespace TODOApp
 
         public Task()
         {
+            // Default constructor to display an example task, will be overwritten when a task is inputted
             Name = "Sample Task";
             Notes = String.Empty;
             Date = DateTime.Now;
         }
         public Task(string name)
         {
+            // Sets task name and if no date was inputted, gives a default of the time it was inputted at
             Name = name;
             Date = DateTime.Now;
         }
         public Task(string name, DateTime dueDate)
         {
+            // Sets task name and date to user value
             Name = name;
             Date = dueDate;
         }
 
         public Task(string name, DateTime dueDate, string notes)
         {
+            // Sets task name, date, and note to user value
             Name = name;
             Date = dueDate;
             Notes = notes;
@@ -43,6 +47,7 @@ namespace TODOApp
         #endregion
 
         #region Properties
+        // Missing validation, will be added ... WIP
         public string Notes
         {
             get

@@ -142,12 +142,14 @@ namespace TODOApp
 
         private void btn_eraseContent_Click(object sender, RoutedEventArgs e)
         {
+            // Sets values to default
             txb_notes.Text = txb_taskName.Text = string.Empty;
             dtp_dueDate.SelectedDate= DateTime.Now;
         }
 
         private void PopulateSampleData()
         {
+            // Sample data
             sampleTasks.Clear();
             sampleTasks.Add(new Task() { Name = "Water Plants", Date = DateTime.Now, Notes="Check the soil as well" });
             sampleTasks.Add(new Task() { Name = "Go to gym", Date = (DateTime.Now).AddDays(1), Notes = "Get fit" });
@@ -184,7 +186,8 @@ namespace TODOApp
                             sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1])));
                         }
                         else if (data.Length == 3)
-                        {
+                        {   
+                            // #*@)!(#*@!)(#*!@)(#*@!(#(!@*#!@*#!@)(#*!@)(#*(!@)#*!@)($&@)!(*^%!&*@)^*&#($^!#*&(!@%^ data[3] NO! data[2] :)
                             sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[3]));
                         }
                     }
