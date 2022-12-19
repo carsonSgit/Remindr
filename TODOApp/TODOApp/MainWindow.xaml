@@ -30,7 +30,7 @@
                 </ListView>
                 
                 <!-- Buttons for: sort, save load -->
-                <Border BorderBrush="Gray" BorderThickness="1" Margin="5,0,5,5">
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="5">
                     <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -61,14 +61,19 @@
                 </GroupBox>
                 
                 <!-- Add Tasks -->
-                <Grid Margin="5">
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="5">
+                    <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                </Grid>
 
-            </StackPanel>
+                    <Button Grid.Column="0" Content="Add Task" Margin="5" Width="75"></Button>
+                    <TextBox Grid.Column="1" Margin="5" Width="155"></TextBox>
+                    </Grid>
+                    </Border>
+
+    </StackPanel>
             
             
         </GroupBox>
