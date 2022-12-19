@@ -22,7 +22,11 @@ namespace TODOApp
             Notes = String.Empty;
             Date = DateTime.Now;
         }
-
+        public Task(string name)
+        {
+            Name = name;
+            Date = DateTime.Now;
+        }
         public Task(string name, DateTime dueDate)
         {
             Name = name;
