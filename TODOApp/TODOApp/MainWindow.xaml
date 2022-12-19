@@ -7,6 +7,73 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="900">
     <Grid>
+        <!-- Split the window into 2 parts, going by 2:1 ratio -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Tasks Window -->
+        <GroupBox Grid.Column="0" Width="280" Margin="10" BorderBrush="Gray" BorderThickness="1">
+            <GroupBox.Header>
+                <Bold FontSize="15">Tasks</Bold>
+            </GroupBox.Header>
+            <StackPanel>
+                <!-- Display of tasks in list view -->
+                <ListView Height="360" Width="auto" MaxWidth="280" Margin="5">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Task Name" Width="135" DisplayMemberBinding="{Binding TaskName}"></GridViewColumn>
+                            <GridViewColumn Header="Due Date" Width="135" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+                <!-- Buttons for: sort, save load -->
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="5,0,5,5">
+                    <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Sort" Margin="5"></Button>
+                    <Button Grid.Column="1" Content="Save" Margin="5"></Button>
+                    <Button Grid.Column="2" Content="Load" Margin="5"></Button>
+                    </Grid>
+                </Border>
+
+                <!-- Buttons for generating report -->
+                <GroupBox BorderBrush="Gray" BorderThickness="1" Margin="5, 0, 5, 5">
+                    <GroupBox.Header>Generate Report</GroupBox.Header>
+                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <!-- Button: Generate Report (for tasks due today) -->
+                        <Button Grid.Column="0" Content="Due Today" Margin="5"></Button>
+
+                        <!-- Button: Generate Report (for overdue tasks) -->
+                        <Button Grid.Column="1" Content="Overdue" Margin="5"></Button>
+                    </Grid>
+                </GroupBox>
+                
+                <!-- Add Tasks -->
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+            </StackPanel>
+            
+            
+        </GroupBox>
+       
+        
         
     </Grid>
 </Window>
