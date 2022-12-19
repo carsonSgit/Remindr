@@ -24,5 +24,40 @@ namespace TODOApp
         {
             InitializeComponent();
         }
+
+        private void btn_sort_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_load_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_dueToday_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_overdue_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_addTask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_eraseContent_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

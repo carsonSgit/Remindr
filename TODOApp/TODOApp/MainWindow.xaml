@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Personal Agenda" Height="540" Width="810">
     <Grid>
-        <!-- Split the window into 2 parts, going by 2:1 ratio -->
+        <!-- Split the window into 2 parts, going by roughly 2:1 ratio -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -43,9 +43,9 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Content="Sort" Margin="5"></Button>
-                        <Button Grid.Column="1" Content="Save" Margin="5"></Button>
-                        <Button Grid.Column="2" Content="Load" Margin="5"></Button>
+                        <Button Grid.Column="0" Content="Sort" Margin="5" Click="btn_sort_Click"></Button>
+                        <Button Grid.Column="1" Content="Save" Margin="5" Click="btn_save_Click"></Button>
+                        <Button Grid.Column="2" Content="Load" Margin="5" Click="btn_load_Click"></Button>
                     </Grid>
                 </Border>
 
@@ -58,10 +58,10 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!-- Button: Generate Report (for tasks due today) -->
-                        <Button Grid.Column="0" Content="Due Today" Margin="5"></Button>
+                        <Button Grid.Column="0" Content="Due Today" Margin="5" Click="btn_dueToday_Click"></Button>
 
                         <!-- Button: Generate Report (for overdue tasks) -->
-                        <Button Grid.Column="1" Content="Overdue" Margin="5"></Button>
+                        <Button Grid.Column="1" Content="Overdue" Margin="5" Click="btn_overdue_Click"></Button>
                     </Grid>
                 </GroupBox>
 
@@ -95,7 +95,7 @@
 
                 <!-- Adding Task Name -->
                 <Label Content="Task Name:" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="370" Text="Input Text Name..."/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="370" Text="Input task name..."/>
 
                 <!-- Adding Due Date -->
                 <Label Content="Due Date:" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
@@ -103,7 +103,7 @@
                 
                 <!-- Adding Notes -->
                 <Label Content="Notes:" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="370" Height="350" Text="Input text notes..."/>
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="370" Height="350" Text="Input task notes..."/>
                 
                 <!-- Grid for buttons -->
                 <Grid Grid.Column="1" Grid.Row="3">
@@ -113,8 +113,8 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Buttons: Create & Remove -->
-                    <Button Grid.Column="0" Grid.Row="0" Content="Add Task" Margin="5"></Button>
-                    <Button Grid.Column="1" Grid.Row="0" Content="Erase Content" Margin="5"></Button>
+                    <Button Grid.Column="0" Grid.Row="0" Content="Add Task" Margin="5" Click="btn_addTask_Click"></Button>
+                    <Button Grid.Column="1" Grid.Row="0" Content="Erase Content" Margin="5" Click="btn_eraseContent_Click"></Button>
                 </Grid>
             </Grid>
         </GroupBox>
