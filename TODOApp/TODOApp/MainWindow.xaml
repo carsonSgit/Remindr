@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TODOApp"
         mc:Ignorable="d"
-        Title="Personal Agenda" Height="540" Width="810">
+        Title="Personal Agenda" Height="560" Width="810">
     <Grid>
         <!-- Split the window into 2 parts, going by roughly 2:1 ratio -->
         <Grid.ColumnDefinitions>

@@ -34,7 +34,7 @@ namespace TODOApp
             if (sampleTasks.Count == 0 )
                 PopulateSampleData();
 
-            liv_tasks.ItemsSource = sampleTasks;
+            liv_tasks.ItemsSource = sampleTasks.ToList();
         }
 
         private void btn_sort_Click(object sender, RoutedEventArgs e)
@@ -105,15 +105,15 @@ namespace TODOApp
         {
             // Very slight difference between this and dueToday
             // Will definitely be changing property name of Task.Date / maybe change the implementation as well
-            List<Task> overDue = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
+            List<Task> overdue = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
             string message = null;
-            if(overDue.Count > 0)
+            if(overdue.Count > 0)
             {
-                foreach (Task t in overDue)
+                foreach (Task t in overdue)
                 {
                     message += t.Name + " | " + t.Date + " | " + t.Notes + Environment.NewLine;
                 }
-                message += $"\nYou have {overDue.Count} thing(s) overdue!";
+                message += $"\nYou have {overdue.Count} thing(s) overdue!";
                 MessageBox.Show(message, "Overdue");
             }
             else
