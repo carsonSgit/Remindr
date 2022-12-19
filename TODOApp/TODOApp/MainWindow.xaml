@@ -24,11 +24,11 @@
             </GroupBox.Header>
             <StackPanel>
                 <!-- Display of tasks in list view -->
-                <ListView Height="360" Width="auto" MaxWidth="280" Margin="5">
+                <ListView Height="360" Width="auto" MaxWidth="280" Margin="5" x:Name="liv_tasks">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding TaskName}"></GridViewColumn>
-                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
+                            <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                             <GridViewColumn Header="Notes" Width="90" DisplayMemberBinding="{Binding Notes}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
@@ -118,7 +118,6 @@
                 </Grid>
             </Grid>
         </GroupBox>
-
 
 
     </Grid>
