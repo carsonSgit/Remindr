@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TODOApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900">
+        Title="Personal Agenda" Height="540" Width="810">
     <Grid>
         <!-- Split the window into 2 parts, going by 2:1 ratio -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
+        <!-- Borders -->
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="Gray" Margin="5,5,0,5"></Border>
+        <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
+
         <!-- Tasks Window -->
         <GroupBox Grid.Column="0" Width="280" Margin="10" BorderBrush="Gray" BorderThickness="1">
             <GroupBox.Header>
@@ -23,24 +27,25 @@
                 <ListView Height="360" Width="auto" MaxWidth="280" Margin="5">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Task Name" Width="135" DisplayMemberBinding="{Binding TaskName}"></GridViewColumn>
-                            <GridViewColumn Header="Due Date" Width="135" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
+                            <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding TaskName}"></GridViewColumn>
+                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
+                            <GridViewColumn Header="Notes" Width="90" DisplayMemberBinding="{Binding Notes}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
-                
+
                 <!-- Buttons for: sort, save load -->
                 <Border BorderBrush="Gray" BorderThickness="1" Margin="5">
                     <Grid Margin="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Content="Sort" Margin="5"></Button>
-                    <Button Grid.Column="1" Content="Save" Margin="5"></Button>
-                    <Button Grid.Column="2" Content="Load" Margin="5"></Button>
+                        <Button Grid.Column="0" Content="Sort" Margin="5"></Button>
+                        <Button Grid.Column="1" Content="Save" Margin="5"></Button>
+                        <Button Grid.Column="2" Content="Load" Margin="5"></Button>
                     </Grid>
                 </Border>
 
@@ -48,10 +53,10 @@
                 <GroupBox BorderBrush="Gray" BorderThickness="1" Margin="5, 0, 5, 5">
                     <GroupBox.Header>Generate Report</GroupBox.Header>
                     <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <!-- Button: Generate Report (for tasks due today) -->
                         <Button Grid.Column="0" Content="Due Today" Margin="5"></Button>
 
@@ -59,26 +64,62 @@
                         <Button Grid.Column="1" Content="Overdue" Margin="5"></Button>
                     </Grid>
                 </GroupBox>
+
+            </StackPanel>
+
+
+
+
+        </GroupBox>
+
+        <!-- Add Task Window -->
+        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Width="490" Margin="10">
+            <GroupBox.Header>
+                <Bold FontSize="15">Add Task</Bold>
+            </GroupBox.Header>
+            
+            
+            
+            <!-- Establish 2x3 Grid for user input -->
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Adding Task Name -->
+                <Label Content="Task Name:" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="370" Text="Input Text Name..."/>
+
+                <!-- Adding Due Date -->
+                <Label Content="Due Date:" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Width="370" Margin="5"></DatePicker>
                 
-                <!-- Add Tasks -->
-                <Border BorderBrush="Gray" BorderThickness="1" Margin="5">
-                    <Grid Margin="5">
+                <!-- Adding Notes -->
+                <Label Content="Notes:" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="370" Height="350" Text="Input text notes..."/>
+                
+                <!-- Grid for buttons -->
+                <Grid Grid.Column="1" Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Content="Add Task" Margin="5" Width="75"></Button>
-                    <TextBox Grid.Column="1" Margin="5" Width="155"></TextBox>
-                    </Grid>
-                    </Border>
-
-    </StackPanel>
-            
-            
+                    <!-- Buttons: Create & Remove -->
+                    <Button Grid.Column="0" Grid.Row="0" Content="Add Task" Margin="5"></Button>
+                    <Button Grid.Column="1" Grid.Row="0" Content="Erase Content" Margin="5"></Button>
+                </Grid>
+            </Grid>
         </GroupBox>
-       
-        
-        
+
+
+
     </Grid>
 </Window>
