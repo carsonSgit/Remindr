@@ -76,7 +76,7 @@ namespace TODOApp
                 MessageBox.Show($"Error: file \"{filePath}\" does not exist");
             }
 
-            liv_tasks.ItemsSource = sampleTasks;
+            liv_tasks.ItemsSource = sampleTasks.ToList();
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
@@ -85,24 +85,41 @@ namespace TODOApp
             List<Task> dueToday = sampleTasks.Where(task => task.Date.Date == DateTime.Today.Date).ToList();
             string message = null;
 
-            foreach (Task t in dueToday)
-                // no need for printing task date as it's known it's today
-                message += t.Name + " | " + t.Notes;
-
-            MessageBox.Show(message, "Due Today");
+            if(dueToday.Count > 0)
+            {
+                foreach (Task t in dueToday)
+                {
+                    // no need for printing task date as it's known it's today
+                    message += t.Name + " | " + t.Notes + Environment.NewLine;
+                }
+                message += $"\nYou have {dueToday.Count} thing(s) left to do!";
+                MessageBox.Show(message, "Due Today");
+            }
+            else
+            {
+                MessageBox.Show("You have nothing due today!", "Due Today");
+            }
         }
 
         private void btn_overdue_Click(object sender, RoutedEventArgs e)
         {
             // Very slight difference between this and dueToday
             // Will definitely be changing property name of Task.Date / maybe change the implementation as well
-            List<Task> dueToday = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
+            List<Task> overDue = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
             string message = null;
-
-            foreach (Task t in dueToday)
-                message += t.Name + " | " + t.Notes + " | " + t.Date.Date;
-
-            MessageBox.Show(message, "Overdue");
+            if(overDue.Count > 0)
+            {
+                foreach (Task t in overDue)
+                {
+                    message += t.Name + " | " + t.Date + " | " + t.Notes + Environment.NewLine;
+                }
+                message += $"\nYou have {overDue.Count} thing(s) overdue!";
+                MessageBox.Show(message, "Overdue");
+            }
+            else
+            {
+                MessageBox.Show("You're all caught up!", "Overdue");
+            }
         }
 
         private void btn_addTask_Click(object sender, RoutedEventArgs e)
@@ -120,7 +137,7 @@ namespace TODOApp
             // add new task
             sampleTasks.Add(new Task() { Name = txb_taskName.Text, Date = (DateTime)dtp_dueDate.SelectedDate, Notes = txb_notes.Text });
 
-            liv_tasks.ItemsSource = sampleTasks;
+            liv_tasks.ItemsSource = sampleTasks.ToList();
         }
 
         private void btn_eraseContent_Click(object sender, RoutedEventArgs e)
