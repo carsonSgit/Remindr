@@ -23,6 +23,7 @@ namespace TODOApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int liState = 0;
         private List<Task> sampleTasks = new List<Task>();
         private string filePath = "./Data.csv";
         private string saveLocation;
@@ -70,9 +71,7 @@ namespace TODOApp
                 MessageBox.Show($"Error: file \"{filePath}\" does not exist");
             }
 
-            // Update ListView 
-            ListView liv = sender as ListView;
-            liv.ItemsSource= sampleTasks;
+            liv_tasks.ItemsSource= sampleTasks;
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
@@ -87,12 +86,26 @@ namespace TODOApp
 
         private void btn_addTask_Click(object sender, RoutedEventArgs e)
         {
+            // if displaying sample data 
+            if (liState == 0)
+            {
+                // clear all sample data
+                sampleTasks.Clear();
+            }
 
+            // change list state to 1
+            liState = 1;
+
+            // add new task
+            sampleTasks.Add(new Task() { Name = txb_taskName.Text, Date = (DateTime)dtp_dueDate.SelectedDate, Notes = txb_notes.Text });
+
+            liv_tasks.ItemsSource = sampleTasks;
         }
 
         private void btn_eraseContent_Click(object sender, RoutedEventArgs e)
         {
-
+            txb_notes.Text = txb_taskName.Text = string.Empty;
+            dtp_dueDate.SelectedDate= DateTime.Now;
         }
 
         private void PopulateSampleData()
@@ -120,8 +133,12 @@ namespace TODOApp
                     // if name and due date (required fields) are specified
                     if (data.Length > 1)
                     {
-                        // clear the tasks lists first
-                        sampleTasks.Clear();
+                        // clear the tasks lists first if it is displaying sample tasks
+                        if (liState == 0)
+                            sampleTasks.Clear();
+
+                        // change list state since it is populated with meaningful data
+                        liState = 1;
 
                         // populate data accordingly
                         if (data.Length == 2)
