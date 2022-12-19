@@ -39,7 +39,12 @@ namespace TODOApp
 
         private void btn_sort_Click(object sender, RoutedEventArgs e)
         {
+            // Orders the task list by DateTime value (this way is less efficient)
+            /*sampleTasks = sampleTasks.OrderBy(task => task.Date).ToList();
+            liv_tasks.ItemsSource = sampleTasks;*/
 
+            // More "efficient" way of going about things
+            liv_tasks.ItemsSource = sampleTasks.OrderBy(task => task.Date).ToList();
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -71,7 +76,7 @@ namespace TODOApp
                 MessageBox.Show($"Error: file \"{filePath}\" does not exist");
             }
 
-            liv_tasks.ItemsSource= sampleTasks;
+            liv_tasks.ItemsSource = sampleTasks;
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
