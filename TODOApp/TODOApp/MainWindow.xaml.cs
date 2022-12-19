@@ -80,13 +80,29 @@ namespace TODOApp
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
-        {
+        {   
+            // Will definitely be changing property name of Task.Date / maybe change the implementation as well
+            List<Task> dueToday = sampleTasks.Where(task => task.Date.Date == DateTime.Today.Date).ToList();
+            string message = null;
 
+            foreach (Task t in dueToday)
+                // no need for printing task date as it's known it's today
+                message += t.Name + " | " + t.Notes;
+
+            MessageBox.Show(message, "Due Today");
         }
 
         private void btn_overdue_Click(object sender, RoutedEventArgs e)
         {
+            // Very slight difference between this and dueToday
+            // Will definitely be changing property name of Task.Date / maybe change the implementation as well
+            List<Task> dueToday = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
+            string message = null;
 
+            foreach (Task t in dueToday)
+                message += t.Name + " | " + t.Notes + " | " + t.Date.Date;
+
+            MessageBox.Show(message, "Overdue");
         }
 
         private void btn_addTask_Click(object sender, RoutedEventArgs e)
