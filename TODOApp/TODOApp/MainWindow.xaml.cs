@@ -83,8 +83,8 @@ namespace TODOApp
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
         {
-            GenerateReport dueToday = new GenerateReport();
-            
+            GenerateReport window2 = new GenerateReport();
+            window2.Show();
             // Will definitely be changing property name of Task.Date / maybe change the implementation as well
             List<Task> dueToday = sampleTasks.Where(task => task.Date.Date == DateTime.Today.Date).ToList();
             string message = null;
