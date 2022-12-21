@@ -73,7 +73,9 @@ namespace TODOApp
             else
             {
                 // Show message to user if file does not exist
-                MessageBox.Show($"Error: file \"{filePath}\" does not exist");
+                MessageBox.Show($"Error: file \"{filePath}\" does not exist", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
 
             liv_tasks.ItemsSource = sampleTasks.ToList();
@@ -93,11 +95,13 @@ namespace TODOApp
                     message += t.Name + " | " + t.Notes + Environment.NewLine;
                 }
                 message += $"\nYou have {dueToday.Count} thing(s) left to do!";
-                MessageBox.Show(message, "Due Today");
+                MessageBox.Show(message, "Due Today",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                MessageBox.Show("You have nothing due today!", "Due Today");
+                MessageBox.Show("You have nothing due today!", "Due Today",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -114,11 +118,13 @@ namespace TODOApp
                     message += t.Name + " | " + t.Date + " | " + t.Notes + Environment.NewLine;
                 }
                 message += $"\nYou have {overdue.Count} thing(s) overdue!";
-                MessageBox.Show(message, "Overdue");
+                MessageBox.Show(message, "Overdue",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                MessageBox.Show("You're all caught up!", "Overdue");
+                MessageBox.Show("You're all caught up!", "Overdue",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
