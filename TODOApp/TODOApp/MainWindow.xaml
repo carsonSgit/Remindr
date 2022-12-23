@@ -5,17 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TODOApp"
         mc:Ignorable="d"
-        Title="Personal Agenda" SizeToContent="WidthAndHeight">
+        Title="Personal Agenda" SizeToContent="WidthAndHeight"
+
+        >
     <Grid>
         <!-- Split the window into 2 parts, going by roughly 2:1 ratio -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="125*"></ColumnDefinition>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="256*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <!-- Borders -->
-        <Border Grid.Column="0" BorderThickness="1" BorderBrush="Gray" Margin="5,5,0,5"></Border>
-        <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="Gray" Margin="5,5,0,5" Grid.ColumnSpan="2"></Border>
+        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
 
         <!-- Tasks Window -->
         <GroupBox Grid.Column="0" Margin="10" BorderBrush="Gray" BorderThickness="1">
@@ -43,9 +46,9 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Content="Sort" Margin="5" Click="btn_sort_Click"></Button>
-                        <Button Grid.Column="1" Content="Save" Margin="5" Click="btn_save_Click"></Button>
-                        <Button Grid.Column="2" Content="Load" Margin="5" Click="btn_load_Click"></Button>
+                        <Button Cursor="Hand" Grid.Column="0" Content="Sort" Margin="5" Click="btn_sort_Click"></Button>
+                        <Button Cursor="Hand" Grid.Column="1" Content="Save" Margin="5" Click="btn_save_Click"></Button>
+                        <Button Cursor="Hand" Grid.Column="2" Content="Load" Margin="5" Click="btn_load_Click"></Button>
                     </Grid>
                 </Border>
 
@@ -58,10 +61,10 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!-- Button: Generate Report (for tasks due today) -->
-                        <Button Grid.Column="0" Content="Due Today" Margin="5" Click="btn_dueToday_Click"></Button>
+                        <Button Cursor="Hand" Grid.Column="0" Content="Due Today" Margin="5" Click="btn_dueToday_Click"></Button>
 
                         <!-- Button: Generate Report (for overdue tasks) -->
-                        <Button Grid.Column="1" Content="Overdue" Margin="5" Click="btn_overdue_Click"></Button>
+                        <Button Cursor="Hand" Grid.Column="1" Content="Overdue" Margin="5" Click="btn_overdue_Click"></Button>
                     </Grid>
                 </GroupBox>
 
@@ -77,9 +80,10 @@
             <GroupBox.Header>
                 <Bold FontSize="15">Add Task</Bold>
             </GroupBox.Header>
-            
-            
-            
+
+
+
+
             <!-- Establish 2x3 Grid for user input -->
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
@@ -113,8 +117,8 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Buttons: Create & Remove -->
-                    <Button Grid.Column="0" Grid.Row="0" Content="Add Task" Margin="5" Click="btn_addTask_Click"></Button>
-                    <Button Grid.Column="1" Grid.Row="0" Content="Erase Content" Margin="5" Click="btn_eraseContent_Click"></Button>
+                    <Button Cursor="Hand" Grid.Column="0" Grid.Row="0" Content="Add Task" Margin="5" Click="btn_addTask_Click"></Button>
+                    <Button Cursor="Hand" Grid.Column="1" Grid.Row="0" Content="Erase Content" Margin="5" Click="btn_eraseContent_Click"></Button>
                 </Grid>
             </Grid>
         </GroupBox>

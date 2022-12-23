@@ -77,7 +77,12 @@ namespace TODOApp
                 return _dueDate;
             }
             set
-            {
+            {   
+                // If no datetime, set as Today (Shouldn't ever be used but if case arises ...
+                if (value == null)
+                {
+                    value = DateTime.Today;
+                }
                 _dueDate = value;
             }
         }
