@@ -18,7 +18,7 @@
         <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
 
         <!-- Tasks Window -->
-        <GroupBox Grid.Column="0" Width="280" Margin="10" BorderBrush="Gray" BorderThickness="1">
+        <GroupBox Grid.Column="0" Width="auto" Height="auto" Margin="10" BorderBrush="Gray" BorderThickness="1" Background="LightSteelBlue">
             <GroupBox.Header>
                 <Bold FontSize="15">Tasks</Bold>
             </GroupBox.Header>
@@ -73,13 +73,14 @@
         </GroupBox>
 
         <!-- Add Task Window -->
-        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Width="490" Margin="10">
+        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Width="auto" Height="auto" Margin="10" Background="AliceBlue">
             <GroupBox.Header>
                 <Bold FontSize="15">Add Task</Bold>
             </GroupBox.Header>
             
-            
-            
+
+
+
             <!-- Establish 2x3 Grid for user input -->
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
