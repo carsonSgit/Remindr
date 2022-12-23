@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TODOApp
 {
-    class Task
+    public class Task
     {
         #region Fields
 
@@ -70,7 +70,7 @@ namespace TODOApp
                 _name = value;
             }
         }
-        public DateTime Date
+        public DateTime DueDate
         {
             get
             {
