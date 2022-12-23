@@ -40,28 +40,44 @@ namespace TODOApp
 
         private void btn_sort_Click(object sender, RoutedEventArgs e)
         {
-            // Orders the task list by DateTime value (this way is less efficient)
-            /*sampleTasks = sampleTasks.OrderBy(task => task.Date).ToList();
-            liv_tasks.ItemsSource = sampleTasks;*/
+            try
+            {
+                // Orders the task list by DateTime value (this way is less efficient)
+                /*sampleTasks = sampleTasks.OrderBy(task => task.Date).ToList();
+                liv_tasks.ItemsSource = sampleTasks;*/
 
-            // More "efficient" way of going about things
-            liv_tasks.ItemsSource = sampleTasks.OrderBy(task => task.DueDate).ToList();
+                // More "efficient" way of going about things
+                liv_tasks.ItemsSource = sampleTasks.OrderBy(task => task.DueDate).ToList();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(saveLocation)) 
+            try
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV File | *.csv | All Files | *.*";
-
-                if ((bool)sfd.ShowDialog())
+                if (string.IsNullOrEmpty(saveLocation))
                 {
-                    saveLocation= sfd.FileName;
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "CSV File | *.csv | All Files | *.*";
+
+                    if ((bool)sfd.ShowDialog())
+                    {
+                        saveLocation = sfd.FileName;
+                    }
                 }
+
+                ConvertToCSV(sampleTasks, filePath);
             }
-            
-            ConvertToCSV(sampleTasks, filePath);
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btn_load_Click(object sender, RoutedEventArgs e)
@@ -141,7 +157,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -185,7 +202,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -210,7 +228,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -224,7 +243,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -240,7 +260,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -285,7 +306,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -312,7 +334,8 @@ namespace TODOApp
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
