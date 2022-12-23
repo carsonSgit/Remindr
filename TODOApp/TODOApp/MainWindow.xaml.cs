@@ -28,6 +28,7 @@ namespace TODOApp
         private List<Task> sampleTasks = new List<Task>();
         private string saveLocation;
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -72,7 +73,11 @@ namespace TODOApp
 
                 ConvertToCSV(sampleTasks, saveLocation);
             }
-            catch { }
+            catch (Exception err) 
+            {
+                MessageBox.Show(err.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
@@ -110,7 +115,7 @@ namespace TODOApp
                 
             //}
 
-            //liv_tasks.ItemsSource = sampleTasks.ToList();
+            liv_tasks.ItemsSource = sampleTasks.ToList();
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
@@ -263,6 +268,7 @@ namespace TODOApp
 
         private void PopulateSampleData(string filePath)
         {
+            string header = "Name, Due Date, Notes";
             try
             {
                 // read the file using stream reader if it exists
@@ -286,6 +292,11 @@ namespace TODOApp
                             // change list state since it is populated with meaningful data
                             liState = 1;
 
+                            if (line == header)
+                            {
+                                continue;
+                            }
+
                             // populate data accordingly
                             if (data.Length == 2)
                             {
@@ -294,7 +305,7 @@ namespace TODOApp
                             else if (data.Length == 3)
                             {
                                 // Add new task
-                                sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[3]));
+                                sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[2]));
                             }
                         }
                     }
@@ -317,12 +328,12 @@ namespace TODOApp
                 string header = "Name, Due Date, Notes";
 
                 // append header
-                strings.Append(header);
+                strings.Add(header);
 
                 // append each object
                 foreach (Task task in tasks)
                 {
-                    strings.Append($"{task.Name}, {task.DueDate}, {task.Notes}");
+                    strings.Add($"{task.Name}, {task.DueDate}, {task.Notes}");
                 }
 
                 // write to file
