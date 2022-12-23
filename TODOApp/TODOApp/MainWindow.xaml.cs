@@ -143,7 +143,7 @@ namespace TODOApp
             //}
 
                 // ONLY if there are tasks due today create an overdue window
-                if (dueToday != null)
+                if (dueToday.Count() > 0)
                 {
                     GenerateReport gr = new GenerateReport(dueToday);
 
@@ -188,7 +188,7 @@ namespace TODOApp
                 //}
 
                 // ONLY if there are overdue tasks create an overdue window
-                if (overdue != null)
+                if (overdue.Count() > 0)
                 {
                     GenerateReport gr = new GenerateReport(overdue);
 

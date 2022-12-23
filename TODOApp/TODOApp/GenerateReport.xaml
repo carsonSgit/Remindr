@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="GenerateReport" SizeToContent="WidthAndHeight">
     <Grid>
-        <ListView Width="auto" Margin="5" x:Name="liv_tasks">
+        <ListView Width="auto" Margin="5" x:Name="liv_tasks" MinHeight="360" MaxHeight="360">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
