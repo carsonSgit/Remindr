@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Reflection;
+using System.Windows.Automation;
 
 namespace TODOApp
 {
@@ -44,7 +45,7 @@ namespace TODOApp
             liv_tasks.ItemsSource = sampleTasks;*/
 
             // More "efficient" way of going about things
-            liv_tasks.ItemsSource = sampleTasks.OrderBy(task => task.Date).ToList();
+            liv_tasks.ItemsSource = sampleTasks.OrderBy(task => task.DueDate).ToList();
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -65,6 +66,25 @@ namespace TODOApp
 
         private void btn_load_Click(object sender, RoutedEventArgs e)
         {
+            // source code from CSConferenceApp: https://github.com/arefmourtada/PIII22Sec1/blob/master/CSConferenceApp/CSConferenceApp/
+            // open file dialog
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "CSV File | *.csv";
+
+            // open file dialog
+            if ((bool)ofd.ShowDialog())
+            {
+                // change save location to the file that was opened
+                saveLocation = ofd.FileName;
+
+                PopulateSampleData(filePath);
+
+                //liv_tasks.ItemsSource = sampleTasks.ToList();
+
+                // reload the items
+                liv_tasks.Items.Refresh();
+            }
+
             // check if file exists
             if (File.Exists(filePath))
             {
@@ -84,24 +104,31 @@ namespace TODOApp
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
         {
             // Will definitely be changing property name of Task.Date / maybe change the implementation as well
-            List<Task> dueToday = sampleTasks.Where(task => task.Date.Date == DateTime.Today.Date).ToList();
-            string message = null;
+            List<Task> dueToday = sampleTasks.Where(task => task.DueDate.Date == DateTime.Today.Date).ToList();
+            //string message = null;
 
-            if(dueToday.Count > 0)
+            //if(dueToday.Count > 0)
+            //{
+            //    foreach (Task t in dueToday)
+            //    {
+            //        // no need for printing task date as it's known it's today
+            //        message += t.Name + " | " + t.Notes + Environment.NewLine;
+            //    }
+            //    message += $"\nYou have {dueToday.Count} thing(s) left to do!";
+            //    MessageBox.Show(message, "Due Today",
+            //        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("You have nothing due today!", "Due Today",
+            //        MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+
+            if (dueToday != null)
             {
-                foreach (Task t in dueToday)
-                {
-                    // no need for printing task date as it's known it's today
-                    message += t.Name + " | " + t.Notes + Environment.NewLine;
-                }
-                message += $"\nYou have {dueToday.Count} thing(s) left to do!";
-                MessageBox.Show(message, "Due Today",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                MessageBox.Show("You have nothing due today!", "Due Today",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                GenerateReport gr = new GenerateReport(dueToday);
+
+                gr.Show();
             }
         }
 
@@ -109,22 +136,30 @@ namespace TODOApp
         {
             // Very slight difference between this and dueToday
             // Will definitely be changing property name of Task.Date / maybe change the implementation as well
-            List<Task> overdue = sampleTasks.Where(task => task.Date.Date < DateTime.Today.Date).ToList();
-            string message = null;
-            if(overdue.Count > 0)
+            List<Task> overdue = sampleTasks.Where(task => task.DueDate.Date < DateTime.Today.Date).ToList();
+
+            //string message = null;
+            //if(overdue.Count > 0)
+            //{
+            //    foreach (Task t in overdue)
+            //    {
+            //        message += t.Name + " | " + t.Date + " | " + t.Notes + Environment.NewLine;
+            //    }
+            //    message += $"\nYou have {overdue.Count} thing(s) overdue!";
+            //    MessageBox.Show(message, "Overdue",
+            //        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("You're all caught up!", "Overdue",
+            //        MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+
+            if (overdue != null)
             {
-                foreach (Task t in overdue)
-                {
-                    message += t.Name + " | " + t.Date + " | " + t.Notes + Environment.NewLine;
-                }
-                message += $"\nYou have {overdue.Count} thing(s) overdue!";
-                MessageBox.Show(message, "Overdue",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                MessageBox.Show("You're all caught up!", "Overdue",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                GenerateReport gr = new GenerateReport(overdue);
+
+                gr.Show();
             }
         }
 
@@ -141,7 +176,7 @@ namespace TODOApp
             liState = 1;
 
             // add new task
-            sampleTasks.Add(new Task() { Name = txb_taskName.Text, Date = (DateTime)dtp_dueDate.SelectedDate, Notes = txb_notes.Text });
+            sampleTasks.Add(new Task() { Name = txb_taskName.Text, DueDate = (DateTime)dtp_dueDate.SelectedDate, Notes = txb_notes.Text });
 
             liv_tasks.ItemsSource = sampleTasks.ToList();
         }
@@ -157,9 +192,9 @@ namespace TODOApp
         {
             // Sample data
             sampleTasks.Clear();
-            sampleTasks.Add(new Task() { Name = "Water Plants", Date = DateTime.Now, Notes="Check the soil as well" });
-            sampleTasks.Add(new Task() { Name = "Go to gym", Date = (DateTime.Now).AddDays(1), Notes = "Get fit" });
-            sampleTasks.Add(new Task() { Name = "Sample overdue task", Date = (DateTime.Now).AddDays(-1), Notes = "it is overdue" });
+            sampleTasks.Add(new Task() { Name = "Water Plants", DueDate = DateTime.Now, Notes="Check the soil as well" });
+            sampleTasks.Add(new Task() { Name = "Go to gym", DueDate = (DateTime.Now).AddDays(1), Notes = "Get fit" });
+            sampleTasks.Add(new Task() { Name = "Sample overdue task", DueDate = (DateTime.Now).AddDays(-1), Notes = "it is overdue" });
 
         }
 
@@ -193,7 +228,7 @@ namespace TODOApp
                         }
                         else if (data.Length == 3)
                         {   
-                            // #*@)!(#*@!)(#*!@)(#*@!(#(!@*#!@*#!@)(#*!@)(#*(!@)#*!@)($&@)!(*^%!&*@)^*&#($^!#*&(!@%^ data[3] NO! data[2] :)
+                            // Add new task
                             sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[3]));
                         }
                     }
@@ -214,7 +249,7 @@ namespace TODOApp
             // append each object
             foreach (Task task in tasks)
             {
-                strings.Append($"{task.Name}, {task.Date}, {task.Notes}");
+                strings.Append($"{task.Name}, {task.DueDate}, {task.Notes}");
             }
 
             // write to file
