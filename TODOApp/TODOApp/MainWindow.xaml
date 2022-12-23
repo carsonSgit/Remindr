@@ -28,7 +28,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
                             <GridViewColumn Header="Notes" Width="90" DisplayMemberBinding="{Binding Notes}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
