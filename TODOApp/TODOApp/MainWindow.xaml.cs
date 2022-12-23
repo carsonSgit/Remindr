@@ -294,7 +294,7 @@ namespace TODOApp
                             else if (data.Length == 3)
                             {
                                 // Add new task
-                                sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[3]));
+                                sampleTasks.Add(new Task(data[0], DateTime.Parse(data[1]), data[2]));
                             }
                         }
                     }
