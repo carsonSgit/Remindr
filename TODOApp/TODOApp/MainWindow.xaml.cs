@@ -64,13 +64,16 @@ namespace TODOApp
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "CSV File | *.csv | All Files | *.*";
 
-                if ((bool)sfd.ShowDialog())
-                {
-                    saveLocation= sfd.FileName;
+                    if ((bool)sfd.ShowDialog())
+                    {
+                        saveLocation = sfd.FileName;
+                    }
                 }
+
+                ConvertToCSV(sampleTasks, saveLocation);
             }
-            
-            ConvertToCSV(sampleTasks, saveLocation);
+            catch { }
+
         }
 
         private void btn_load_Click(object sender, RoutedEventArgs e)
