@@ -18,17 +18,17 @@
         <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
 
         <!-- Tasks Window -->
-        <GroupBox Grid.Column="0" Width="280" Margin="10" BorderBrush="Gray" BorderThickness="1">
+        <GroupBox Grid.Column="0" Margin="10" BorderBrush="Gray" BorderThickness="1">
             <GroupBox.Header>
                 <Bold FontSize="15">Tasks</Bold>
             </GroupBox.Header>
             <StackPanel>
                 <!-- Display of tasks in list view -->
-                <ListView Height="360" Width="auto" MaxWidth="280" Margin="5" x:Name="liv_tasks">
+                <ListView Height="360" Width="auto" Margin="5" x:Name="liv_tasks">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Task Name" Width="90" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding DueDate}"></GridViewColumn>
+                            <GridViewColumn Header="Due Date" Width="90" DisplayMemberBinding="{Binding DueDate, StringFormat={}{0:dd MMMM yyyy}}"></GridViewColumn>
                             <GridViewColumn Header="Notes" Width="90" DisplayMemberBinding="{Binding Notes}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
@@ -73,7 +73,7 @@
         </GroupBox>
 
         <!-- Add Task Window -->
-        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Width="490" Margin="10">
+        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Margin="10">
             <GroupBox.Header>
                 <Bold FontSize="15">Add Task</Bold>
             </GroupBox.Header>
@@ -95,15 +95,15 @@
 
                 <!-- Adding Task Name -->
                 <Label Content="Task Name:" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="370" Text="Input task name..." x:Name="txb_taskName"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" MinWidth="370" Text="Input task name..." x:Name="txb_taskName"/>
 
                 <!-- Adding Due Date -->
                 <Label Content="Due Date:" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Width="370" Margin="5" x:Name="dtp_dueDate"></DatePicker>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="5" x:Name="dtp_dueDate"></DatePicker>
                 
                 <!-- Adding Notes -->
                 <Label Content="Notes:" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="370" Height="350" Text="Input task notes..." x:Name="txb_notes" TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" MinHeight="350" Text="Input task notes..." x:Name="txb_notes" TextWrapping="Wrap"/>
                 
                 <!-- Grid for buttons -->
                 <Grid Grid.Column="1" Grid.Row="3">

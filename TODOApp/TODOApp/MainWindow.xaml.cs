@@ -26,7 +26,6 @@ namespace TODOApp
     {
         private int liState = 0;
         private List<Task> sampleTasks = new List<Task>();
-        private string filePath = "./Data.csv";
         private string saveLocation;
 
         public MainWindow()
@@ -61,7 +60,7 @@ namespace TODOApp
                 }
             }
             
-            ConvertToCSV(sampleTasks, filePath);
+            ConvertToCSV(sampleTasks, saveLocation);
         }
 
         private void btn_load_Click(object sender, RoutedEventArgs e)
@@ -77,7 +76,7 @@ namespace TODOApp
                 // change save location to the file that was opened
                 saveLocation = ofd.FileName;
 
-                PopulateSampleData(filePath);
+                PopulateSampleData(saveLocation);
 
                 //liv_tasks.ItemsSource = sampleTasks.ToList();
 
@@ -85,20 +84,20 @@ namespace TODOApp
                 liv_tasks.Items.Refresh();
             }
 
-            // check if file exists
-            if (File.Exists(filePath))
-            {
-                PopulateSampleData(filePath);
-            }
-            else
-            {
-                // Show message to user if file does not exist
-                MessageBox.Show($"Error: file \"{filePath}\" does not exist", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+            //// check if file exists
+            //if (File.Exists(filePath))
+            //{
+            //    PopulateSampleData(filePath);
+            //}
+            //else
+            //{
+            //    // Show message to user if file does not exist
+            //    MessageBox.Show($"Error: file \"{filePath}\" does not exist", "Error",
+            //        MessageBoxButton.OK, MessageBoxImage.Error);
                 
-            }
+            //}
 
-            liv_tasks.ItemsSource = sampleTasks.ToList();
+            //liv_tasks.ItemsSource = sampleTasks.ToList();
         }
 
         private void btn_dueToday_Click(object sender, RoutedEventArgs e)
