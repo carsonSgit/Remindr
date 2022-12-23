@@ -124,12 +124,19 @@ namespace TODOApp
             //    MessageBox.Show("You have nothing due today!", "Due Today",
             //        MessageBoxButton.OK, MessageBoxImage.Information);
             //}
-            
+
+                // ONLY if there are tasks due today create an overdue window
                 if (dueToday != null)
                 {
                     GenerateReport gr = new GenerateReport(dueToday);
 
                     gr.Show();
+                }
+                // if no tasks due today, just give a MessageBox popup
+                else
+                {
+                    MessageBox.Show("You have nothing due today!", "Due Today",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception err)
@@ -162,11 +169,18 @@ namespace TODOApp
                 //        MessageBoxButton.OK, MessageBoxImage.Information);
                 //}
 
+                // ONLY if there are overdue tasks create an overdue window
                 if (overdue != null)
                 {
                     GenerateReport gr = new GenerateReport(overdue);
 
                     gr.Show();
+                }
+                // if no overdue tasks, just give a MessageBox popup
+                else
+                {
+                    MessageBox.Show("You're all caught up!", "Overdue",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception err)

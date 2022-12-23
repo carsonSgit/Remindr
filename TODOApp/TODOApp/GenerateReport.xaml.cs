@@ -28,6 +28,7 @@ namespace TODOApp
         {
             InitializeComponent();
             
+            // Just print tasks to report screen
             liv_tasks.ItemsSource = tasks.ToList();
         }
 
