@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TODOApp"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Personal Agenda" SizeToContent="WidthAndHeight">
+        Title="Personal Agenda" SizeToContent="WidthAndHeight" MinWidth="900">
     <Grid>
         <!-- Split the window into 2 parts, going by roughly 2:1 ratio -->
         <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
         <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Margin="0,5,5,5"></Border>
 
         <!-- Tasks Window -->
-        <GroupBox Grid.Column="0" Margin="10" BorderBrush="Gray" BorderThickness="1">
+        <GroupBox Background="LightSteelBlue" Grid.Column="0" Margin="10" BorderBrush="Gray" BorderThickness="1">
             <GroupBox.Header>
                 <Bold FontSize="15">Tasks</Bold>
             </GroupBox.Header>
@@ -74,18 +74,20 @@
         </GroupBox>
 
         <!-- Add Task Window -->
-        <GroupBox Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Margin="10">
+        <GroupBox Background="AliceBlue" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Margin="10" Width="auto">
             <GroupBox.Header>
                 <Bold FontSize="15">Add Task</Bold>
             </GroupBox.Header>
-            
-            
-            
+
+
+
             <!-- Establish 2x3 Grid for user input -->
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="36*"/>
+                    <ColumnDefinition Width="41*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -95,17 +97,17 @@
                 </Grid.RowDefinitions>
 
                 <!-- Adding Task Name -->
-                <Label Content="Task Name:" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="auto" Text="Input task name..." x:Name="txb_taskName" />
+                <Label Content="Task Name:" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Width="auto" Text="Input task name..." x:Name="txb_taskName" />
 
                 <!-- Adding Due Date -->
-                <Label Content="Due Date:" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="5" x:Name="dtp_dueDate" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
-                
+                <Label Content="Due Date:" Grid.Row="1" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" Width="auto" x:Name="dtp_dueDate" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
+
                 <!-- Adding Notes -->
-                <Label Content="Notes:" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="5" MinHeight="350" Text="Input task notes..." x:Name="txb_notes" TextWrapping="Wrap"/>
-                
+                <Label Content="Notes:" Grid.Row="2" FontWeight="Bold" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" FontSize="14"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" Width="auto" MinWidth="360" MinHeight="350" Text="Input task notes..." x:Name="txb_notes" TextWrapping="Wrap"/>
+
                 <!-- Grid for buttons -->
                 <Grid Grid.Column="1" Grid.Row="3">
                     <Grid.ColumnDefinitions>
